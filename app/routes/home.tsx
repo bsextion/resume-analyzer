@@ -14,7 +14,7 @@ export default function Home() {
     return <main className="bg-[url('/images/bg-main.svg')] bg-cover">
         <Navbar/>
         <section className="main-section">
-            <div className="page-heading">
+            <div className="page-heading py-16">
                 <h1>Job Application Tracker & Smart Resume Builder</h1>
                 <h2>Track and review your job submissions & receive AI feedback!</h2>
             </div>
