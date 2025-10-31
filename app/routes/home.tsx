@@ -15,7 +15,6 @@ export function meta({}: Route.MetaArgs) {
 
 export default function Home() {
     const {auth} = usePuterStore();
-    const location = useLocation();
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -23,11 +22,8 @@ export default function Home() {
             navigate('/auth?next=/');
         }
     }, [auth.isAuthenticated])
-    const {init} = usePuterStore();
 
-    useEffect(() => {
-        init();
-    }, [init]);
+    console.log('Is Authenticated:', auth.isAuthenticated);
 
     return <main className="bg-[url('/images/bg-main.svg')] bg-cover">
         <Navbar/>
