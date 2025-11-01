@@ -19,24 +19,21 @@ const Upload = () => {
 
     const handleAnalyze = async (companyName: string, jobTitle: string, jobDescription: string, file: File) => {
         setIsProcessing(true);
-        setStatusText('Uploading your resume...');
-
+        setStatusText('Uploading the file...');
         const uploadedFile = await fs.upload([file]);
         if (!uploadedFile) return setStatusText('Error: Failed to upload resume...');
 
         setStatusText('Converting to image...');
         const imageFile = await convertPdfToImage(file);
-        console.log('Processing: ', imageFile);
         if (!imageFile.file) return setStatusText('Error: Failed to process resume...');
 
         setStatusText('Processing your resume...');
         const uploadedImage = await fs.upload([imageFile.file]);
-        if (!uploadedImage) return setStatusText('Error: Failed to upload image...');
+        if(!uploadedImage) return setStatusText('Error: Failed to upload image');
 
         setStatusText("Preparing data...")
 
         const uuid = generateUUID();
-
         const data = {
             id: uuid,
             resumePath: uploadedFile.path,
@@ -48,12 +45,13 @@ const Upload = () => {
         }
 
         await kv.set(`resume-${uuid}`, JSON.stringify(data));
-        setStatusText("Analyzing...")
+        setStatusText('Analyzing...');
 
         const feedback = await ai.feedback(
             uploadedFile.path,
             prepareInstructions({ jobTitle, jobDescription })
         )
+        if (!feedback) return setStatusText('Error: Failed to analyze resume');
 
         if (!feedback) return setStatusText('Error: Failed to analyze resume...');
 
@@ -63,8 +61,7 @@ const Upload = () => {
 
         data.feedback = JSON.parse(feedbackText);
         await kv.set(`resume-${uuid}`, JSON.stringify(data));
-        setStatusText("Analysis complete!");
-
+        setStatusText('Analysis complete, redirecting...');
         console.log(data);
         navigate(`/resume/${uuid}`);
     }
@@ -84,14 +81,8 @@ const Upload = () => {
         if (!file) return
 
         handleAnalyze(companyName, jobTitle, jobDescription, file);
-
-
-
-
     }
 
-
-    useState()
     return (
         <main className="bg-[url('/images/bg-main.svg')] bg-cover">
         <Navbar/>
