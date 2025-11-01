@@ -1,3 +1,6 @@
+import {type ClassValue, clsx} from "clsx";
+import {twMerge} from "tailwind-merge";
+
 // Utility function to format file sizes
 export function formatSize(bytes: number): string {
     if (!Number.isFinite(bytes) || bytes <= 0) return '0 B';
@@ -15,6 +18,10 @@ export function formatSize(bytes: number): string {
     if (bytes < MB) return `${format(bytes / KB)} KB`;
     if (bytes < GB) return `${format(bytes / MB)} MB`;
     return `${format(bytes / GB)} GB`;
+}
+
+export function cn(...inputs: ClassValue[]) {
+    return twMerge(clsx(inputs))
 }
 
 // UUID generation utility
