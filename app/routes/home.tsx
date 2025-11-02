@@ -33,7 +33,6 @@ export default function Home() {
             const parsedResumes = resumes?.map((resume) => (
                 JSON.parse(resume.value) as Resume
             ))
-            console.log("Resumes: ", parsedResumes);
             setResumes(parsedResumes || []);
             setIsLoading(false);
         }
@@ -48,7 +47,7 @@ export default function Home() {
             <div className="page-heading py-16">
                 <h1>Job Application Tracker & Smart Resume Builder</h1>
                 {!isLoading && resumes?.length === 0 ? (
-                    <h2>No resumes found. Upload your resume to get feedback</h2>
+                    <h2>No resumes found. Upload your resume to get feedback!</h2>
                 ): <h2>Track and review your job submissions & receive AI feedback!</h2>
                 }
             </div>
