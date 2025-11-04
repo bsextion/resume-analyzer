@@ -1,15 +1,27 @@
-import React from 'react';
-import {Link} from "react-router";
+import React, {useEffect} from 'react';
+import {Link, useNavigate} from "react-router";
+import {usePuterStore} from "~/lib/puter";
 
 const Navbar = () => {
+    const {auth} = usePuterStore();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (!auth.isAuthenticated ) {
+            navigate('/');
+        }
+    }, [auth.isAuthenticated]);
+
     return (
         <nav className="navbar">
             <Link to="/">
                 <p className="text-2xl font-bold text-gradient"> Resume Analyzer</p>
             </Link>
+            {auth.isAuthenticated &&
             <Link to="/upload">
-                <p className="primary-button w-fit"> Upload Resume</p>
+                <button className="primary-button w-fit" onClick={auth.signOut}> Log Out</button>
             </Link>
+            }
         </nav>
     );
 };

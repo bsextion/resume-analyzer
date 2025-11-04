@@ -100,6 +100,10 @@ form {
         @apply flex flex-row justify-between items-center bg-white rounded-full p-4 w-full px-10 max-w-[1200px] mx-auto;
     }
 
+    .navbar-button {
+        @apply flex flex-row justify-between items-center bg-white rounded-full px-10 p-2 max-w-[1200px];
+    }
+
     .score-badge {
         @apply flex flex-row items-center justify-center py-1 px-2 gap-4 rounded-[96px];
     }
