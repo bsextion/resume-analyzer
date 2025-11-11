@@ -6,9 +6,6 @@ import {
     AccordionItem,
 } from "./Accordion";
 
-interface DetailseProps {
-    feedback: Feedback;
-}
 const ScoreBadge = ({ score }: { score: number }) => {
     return (
         <div

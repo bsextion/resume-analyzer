@@ -18,7 +18,7 @@ const Navbar = () => {
                 <p className="text-2xl font-bold text-gradient"> Resume Analyzer</p>
             </Link>
             {auth.isAuthenticated &&
-            <Link to="/upload">
+            <Link to="/">
                 <button className="primary-button w-fit" onClick={auth.signOut}> Log Out</button>
             </Link>
             }

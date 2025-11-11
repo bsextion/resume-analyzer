@@ -54,7 +54,7 @@ form {
         @apply bg-clip-text text-transparent bg-gradient-to-r from-[#AB8C95] via-[#000000] to-[#8E97C5];
     }
     .gradient-border {
-        @apply bg-gradient-to-b from-light-blue-100 to-light-blue-200 p-4 rounded-2xl;
+        @apply bg-gradient-to-b from-light-blue-100 to-light-blue-200 p-3 rounded-2xl;
     }
     .primary-button {
         @apply primary-gradient text-white rounded-full px-4 py-2 cursor-pointer w-full;
@@ -85,15 +85,19 @@ form {
     }
 
     .resume-card {
-        @apply flex flex-col gap-8 h-[560px] w-[350px] lg:w-[430px] xl:w-[490px] bg-white rounded-2xl p-4;
+        @apply flex flex-col gap-6 h-[580px] w-[350px] lg:w-[430px] xl:w-[490px] bg-white rounded-2xl p-4;
     }
 
     .resume-card-header {
-        @apply flex flex-row gap-2 justify-between min-h-[110px] max-sm:flex-col items-center max-md:justify-center max-md:items-center;
+        @apply flex flex-row gap-2 justify-between min-h-[110px] max-sm:flex-col items-start max-md:justify-center max-md:items-center;
     }
 
     .feedback-section {
         @apply flex flex-col gap-8 w-1/2 px-8 max-lg:w-full py-6;
+    }
+
+    .tailor-badge {
+        @apply bg-green-300;
     }
 
     .navbar {
